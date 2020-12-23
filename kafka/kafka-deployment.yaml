@@ -1,0 +1,24 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: kafka
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+        app: kafka-1
+  template:
+    metadata:
+      labels:
+        app: kafka-1
+    spec:
+      containers:
+      - name: kafka
+        image: bitnami/kafka:latest
+        ports:
+        - containerPort: 9092
+        env:
+        - name: ALLOW_PLAINTEXT_LISTENER
+          value: "yes"
+        - name: KAFKA_CFG_ZOOKEEPER_CONNECT
+          value: "zookeeper-service.default.svc.cluster.local:2181"
