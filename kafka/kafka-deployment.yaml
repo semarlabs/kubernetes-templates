@@ -22,3 +22,11 @@ spec:
           value: "yes"
         - name: KAFKA_CFG_ZOOKEEPER_CONNECT
           value: "zookeeper-service.default.svc.cluster.local:2181"
+        - name: KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP
+          value: "CLIENT:PLAINTEXT,EXTERNAL:PLAINTEXT"
+        - name: KAFKA_CFG_LISTENERS
+          value: "CLIENT://:9092,EXTERNAL://:9093"
+        - name: KAFKA_INTER_BROKER_LISTENER_NAME
+          value: "CLIENT"
+        - name: KAFKA_CFG_ADVERTISED_LISTENERS
+          value: "CLIENT://127.0.0.1:9092,EXTERNAL://10.64.140.43:9093"
